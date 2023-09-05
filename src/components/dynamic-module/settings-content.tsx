@@ -37,6 +37,16 @@ export const SettingsContent = ({
         <TextContainer/>
       </FieldContainer>
       <FieldContainer
+        attrName="subtitle.innerContent"
+        label={__('Subtitle', 'd5-extension-example-modules')}
+        description={__('Subtitle to show for module.', 'd5-extension-example-modules')}
+        features={{
+          sticky: false,
+        }}
+      >
+        <TextContainer/>
+      </FieldContainer>
+      <FieldContainer
         attrName="postItems.innerContent"
         subName="postsNumber"
         label={__('Number of posts', 'd5-extension-example-modules')}
@@ -53,7 +63,7 @@ export const SettingsContent = ({
     </GroupContainer>
     <LinkGroup />
     <BackgroundGroup />
-    <AdminLabelGroup 
+    <AdminLabelGroup
       defaultGroupAttr={defaultSettingsAttrs?.module?.meta?.adminLabel}
     />
   </React.Fragment>

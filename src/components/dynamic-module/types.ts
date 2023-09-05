@@ -40,6 +40,10 @@ export interface DynamicModuleAttrs extends InternalAttrs {
     innerContent?: FormatBreakpointStateAttr<string>;
     decoration?: PickedElementDecorationAttrs<'font'>;
   };
+  subtitle?: {
+    innerContent?: FormatBreakpointStateAttr<string>;
+    decoration?: PickedElementDecorationAttrs<'font'>;
+  };
   postItems?: {
     innerContent?: FormatBreakpointStateAttr<{
       postsNumber?:string;

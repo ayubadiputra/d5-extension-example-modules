@@ -38,6 +38,17 @@ export const SettingsDesign = ({
       }}
     />
     <FontGroup
+      groupLabel={__('Subtitle Text', 'd5-extension-example-modules')}
+      attrName="subtitle.decoration.font"
+      fieldLabel={__('Subtitle', 'd5-extension-example-modules')}
+      defaultGroupAttr={defaultSettingsAttrs?.subtitle?.decoration?.font?.asMutable({ deep: true }) ?? {}}
+      fields={{
+        headingLevel: {
+          render: true,
+        },
+      }}
+    />
+    <FontGroup
       groupLabel={__('Post Title Text', 'd5-extension-example-modules')}
       attrName="postTitle.decoration.font"
       fieldLabel={__('Post Title', 'd5-extension-example-modules')}
