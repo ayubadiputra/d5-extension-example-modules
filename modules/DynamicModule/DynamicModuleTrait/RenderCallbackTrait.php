@@ -121,6 +121,13 @@ trait RenderCallbackTrait {
 			]
 		);
 
+		// Subtitle.
+		$subtitle = $elements->render(
+			[
+				'attrName' => 'subtitle',
+			]
+		);
+
 		// Posts container.
 		if ( ! empty( $post_items ) ) {
 			$posts_container = HTMLUtility::render(
@@ -175,6 +182,7 @@ trait RenderCallbackTrait {
 							'childrenSanitizer' => 'et_core_esc_previously',
 							'children'          => [
 								$title,
+								$subtitle,
 								$posts_container,
 							],
 						]

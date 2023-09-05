@@ -13,4 +13,11 @@ export const placeholderContent: DynamicModuleAttrs = {
       }
     }
   },
+  subtitle: {
+    innerContent: {
+      desktop: {
+        value: 'Your Subtitle Goes Here',
+      }
+    }
+  },
 };

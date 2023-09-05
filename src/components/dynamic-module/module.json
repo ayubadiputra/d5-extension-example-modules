@@ -47,6 +47,35 @@
         "class": "dynamic-module__title"
       }
     },
+    "subtitle": {
+      "type": "object",
+      "selector": "{{selector}} .dynamic-module__subtitle",
+      "default": {
+        "innerContent": {
+          "desktop": {
+            "value": "Your Subtitle Goes Here"
+          }
+        },
+        "decoration": {
+          "font": {
+            "font": {
+              "desktop": {
+                "value": {
+                  "color": "#555555",
+                  "headingLevel": "h3"
+                }
+              }
+            }
+          }
+        }
+      },
+      "inlineEditor": "plainText",
+      "elementType": "heading",
+      "childrenSanitizer": "et_core_esc_previously",
+      "attributes": {
+        "class": "dynamic-module__subtitle"
+      }
+    },
     "postItems": {
       "type": "object",
       "default": {

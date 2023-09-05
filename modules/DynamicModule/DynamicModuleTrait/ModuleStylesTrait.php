@@ -79,6 +79,11 @@ trait ModuleStylesTrait {
 					),
 					$elements->style(
 						[
+							'attrName' => 'subtitle',
+						]
+					),
+					$elements->style(
+						[
 							'attrName' => 'postTitle',
 						]
 					),

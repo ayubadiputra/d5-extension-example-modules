@@ -2,7 +2,7 @@
 import React, { ReactElement, useEffect } from 'react';
 
 // Divi Dependencies.
-import { 
+import {
   ModuleContainer,
   ElementComponents,
 } from '@divi/module';
@@ -76,6 +76,9 @@ const DynamicModuleEdit = (props: DynamicModuleEditProps): ReactElement => {
             <div className="dynamic-module__inner">
               {elements.render({
                 attrName: 'title',
+              })}
+              {elements.render({
+                attrName: 'subtitle',
               })}
               <div className="dynamic-module__post-items">
                 {

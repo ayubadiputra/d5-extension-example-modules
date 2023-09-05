@@ -43,6 +43,9 @@ import { DynamicModuleAttrs } from './types';
         attrName: 'title',
       })}
       {elements.style({
+        attrName: 'subtitle',
+      })}
+      {elements.style({
         attrName: 'postTitle',
       })}
     </StyleContainer>
