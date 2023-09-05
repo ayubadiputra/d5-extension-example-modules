@@ -1,3 +1,8 @@
+# D5 Extension Example Modules (Modified by Ayub Adiputra)
+
+Examples with PR:
+- [Module :: Default and Placeholder :: Update default value and placeholder content of Dynamic module Title](https://github.com/ayubadiputra/d5-extension-example-modules/pull/1)
+
 # D5 Extension Example Modules
 This extension is a collection of example modules. You can use these modules as a reference for your development. This extension uses composer to autoload the modules in PHP. You can find the example modules in the `src/components` folder for Visual Builder and in the `modules` folder for Front-end rendering.
 
