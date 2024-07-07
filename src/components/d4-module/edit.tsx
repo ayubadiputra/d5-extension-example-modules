@@ -34,6 +34,8 @@ const D4ModuleEdit = (props: D4ModuleEditProps): ReactElement => {
     elements,
   } = props;
 
+  console.log('Test - D4ModuleEdit', attrs);
+
   return (
     <ModuleContainer
       attrs={attrs}
