@@ -28,12 +28,17 @@
       "type": "object",
       "selector": "{{selector}} .example_dynamic_module__title",
       "default": {
+        "innerContent": {
+          "desktop": {
+            "value": "Dynamic Module Title Here"
+          }
+        },
         "decoration": {
           "font": {
             "font": {
               "desktop": {
                 "value": {
-                  "headingLevel": "h2"
+                  "headingLevel": "h4"
                 }
               }
             }
