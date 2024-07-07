@@ -54,5 +54,8 @@ export const conversionOutline: ModuleConversionOutline = {
     content:      'content.innerContent.*',
     title:        'title.innerContent.*',
     header_level: 'title.decoration.font.font.*.headingLevel',
+    my_element_width_width:            'myElement.decoration.sizing.*.width',
+    my_element_width_max_width:        'myElement.decoration.sizing.*.maxWidth',
+    my_element_width_module_alignment: 'myElement.decoration.sizing.*.alignment',
   },
 };

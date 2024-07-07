@@ -50,6 +50,15 @@
       },
       "tagName": "div",
       "inlineEditor": "richText"
+    },
+    "myElement": {
+      "type": "object",
+      "selector": "{{selector}}",
+      "attributes": {
+        "class": ""
+      },
+      "tagName": "div",
+      "childrenSanitizer": "et_core_esc_previously"
     }
   },
   "customCssFields": {
