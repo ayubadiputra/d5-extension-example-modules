@@ -1,6 +1,8 @@
 // Divi dependencies.
-import { ModuleRegisterDefinition } from '@divi/module-library';
-import { ModuleMetadata } from '@divi/types';
+import {
+  type Metadata,
+  type ModuleLibrary,
+} from '@divi/types';
 
 // Local dependencies.
 import metadata from './module.json';
@@ -11,7 +13,6 @@ import { SettingsAdvanced } from './settings-advanced';
 import { ParentModuleAttrs } from './types';
 
 // Styles.
-import './style.scss';
 import './module.scss';
 
 /**
@@ -19,9 +20,9 @@ import './module.scss';
  *
  * @since ??
  */
-export const parentModule: ModuleRegisterDefinition<ParentModuleAttrs> = {
+export const parentModule: ModuleLibrary.Module.RegisterDefinition<ParentModuleAttrs> = {
   // Imported json has no inferred type hence type-cast is necessary.
-  metadata: metadata as ModuleMetadata,
+  metadata: metadata as Metadata.Values<ParentModuleAttrs>,
   childrenName: ['example/child-module'],
   template:     [
     ['example/child-module', {}],

@@ -58,7 +58,7 @@ trait RenderCallbackTrait {
 			[
 				'tag'               => 'div',
 				'attributes'        => [
-					'class' => 'static-module__image',
+					'class' => 'example_static_module__image',
 				],
 				'childrenSanitizer' => 'et_core_esc_previously',
 				'children'          => $image,
@@ -84,7 +84,7 @@ trait RenderCallbackTrait {
 			[
 				'tag'               => 'div',
 				'attributes'        => [
-					'class' => 'static-module__content-container',
+					'class' => 'example_static_module__content-container',
 				],
 				'childrenSanitizer' => 'et_core_esc_previously',
 				'children'          => $title . $content,
@@ -112,16 +112,28 @@ trait RenderCallbackTrait {
 				'parentAttrs'         => $parent_attrs,
 				'parentId'            => $parent->id ?? '',
 				'parentName'          => $parent->blockName ?? '',
-				'children'            => ElementComponents::component(
-					[
-						'attrs'         => $attrs['module']['decoration'] ?? [],
-						'id'            => $block->parsed_block['id'],
+				'children'            => [
+					ElementComponents::component(
+						[
+							'attrs'         => $attrs['module']['decoration'] ?? [],
+							'id'            => $block->parsed_block['id'],
 
-						// FE only.
-						'orderIndex'    => $block->parsed_block['orderIndex'],
-						'storeInstance' => $block->parsed_block['storeInstance'],
-					]
-				) . $image_container . $content_container,
+							// FE only.
+							'orderIndex'    => $block->parsed_block['orderIndex'],
+							'storeInstance' => $block->parsed_block['storeInstance'],
+						]
+					),
+					HTMLUtility::render(
+						[
+							'tag'               => 'div',
+							'attributes'        => [
+								'class' => 'example_static_module__inner',
+							],
+							'childrenSanitizer' => 'et_core_esc_previously',
+							'children'          => $image_container . $content_container,
+						]
+					),
+				],
 			]
 		);
 	}

@@ -47,12 +47,12 @@ trait RenderCallbackTrait {
 		$parent_attrs_with_default = array_replace_recursive( $parent_default_attributes, $parent_attrs );
 
 		// Icon.
-		$icon_value = $attrs['icon']['innerContent']['desktop']['value'] ?? $parent_attrs_with_default['icon']['innerContent']['desktop']['value'];
+		$icon_value = $attrs['icon']['innerContent']['desktop']['value'] ?? $parent_attrs_with_default['icon']['innerContent']['desktop']['value'] ?? [];
 		$icon       = HTMLUtility::render(
 			[
 				'tag'               => 'div',
 				'attributes'        => [
-					'class' => 'child-module__icon et-pb-icon',
+					'class' => 'example_child_module__icon et-pb-icon',
 				],
 				'childrenSanitizer' => 'esc_html',
 				'children'          => Utils::process_font_icon( $icon_value ),
@@ -80,7 +80,7 @@ trait RenderCallbackTrait {
 			[
 				'tag'               => 'div',
 				'attributes'        => [
-					'class' => 'child-module__content-container',
+					'class' => 'example_child_module__content-container',
 				],
 				'childrenSanitizer' => 'et_core_esc_previously',
 				'children'          => $title . $content,
