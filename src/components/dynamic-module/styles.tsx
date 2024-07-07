@@ -3,10 +3,15 @@ import React, { ReactElement } from 'react';
 
 // Divi dependencies.
 import {
+  CommonStyle,
+  DeclarationFunctionProps,
   StyleContainer,
   StylesProps,
   TextStyle,
 } from '@divi/module';
+import {
+  getAttrByMode,
+} from '@divi/module-utils';
 
 // Local dependencies.
 import { DynamicModuleAttrs } from './types';
@@ -48,6 +53,16 @@ import { DynamicModuleAttrs } from './types';
       {elements.style({
         attrName: 'postTitle',
       })}
+<CommonStyle
+  selector={`${orderClass} .test-image`}
+  attr={attrs?.image?.decoration?.position}
+  declarationFunction={(
+    { attrValue }: DeclarationFunctionProps<{x?: string; y?: string}>
+  ): string => {
+    // Value: {x: '7px', y: '20px'}
+    return `object-position: ${attrValue?.x} ${attrValue?.y};`;
+  }}
+/>
     </StyleContainer>
   );
 }

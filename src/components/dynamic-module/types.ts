@@ -52,6 +52,37 @@ export interface DynamicModuleAttrs extends InternalAttrs {
   postTitle?: {
     decoration?: PickedElementDecorationAttrs<'font'>;
   };
+  display_type?: {
+    innerContent?: FormatBreakpointStateAttr<{
+      postsNumber?:string;
+    }>;
+  };
+  tblStripes?: {
+    advanced?: {
+      applyTo?: FormatBreakpointStateAttr<[]>;
+    };
+  };
+  tblStripes2?: {
+    advanced?: {
+      applyTo?: FormatBreakpointStateAttr<''>;
+    };
+  };
+  image?: {
+    decoration?: {
+      spacing?: {
+        padding?: FormatBreakpointStateAttr<{
+          top?:string;
+          right?:string;
+          bottom?:string;
+          left?:string;
+        }>;
+      };
+      position?: FormatBreakpointStateAttr<{
+        x?:string;
+        y?:string;
+      }>;
+    };
+  };
 }
 
 export type DynamicModuleEditProps = ModuleEditProps<DynamicModuleAttrs>;

@@ -15,6 +15,7 @@ import {
 import { GroupContainer } from '@divi/modal';
 import {
   TextContainer,
+  SelectContainer,
 } from '@divi/field-library';
 import { DynamicModuleAttrs } from './types';
 
@@ -59,6 +60,32 @@ export const SettingsContent = ({
         defaultAttr={defaultSettingsAttrs?.postItems?.innerContent}
       >
         <TextContainer />
+      </FieldContainer>
+      <FieldContainer
+        attrName="display_type.innerContent"
+        label={__('Display Type', 'd5-extension-example-modules')}
+        description={__('Input your value to action title here.', 'd5-extension-example-modules')}
+        features={{sticky: false}}
+        defaultAttr={defaultSettingsAttrs?.display_type?.innerContent}
+      >
+        <SelectContainer
+          options={
+            {
+              countdown_timer: {
+                label: __('Standard', 'countdown-timer-maker'),
+              },
+              flip_timer: {
+                label: __('Flip', 'countdown-timer-maker'),
+              },
+              circle_timer: {
+                label: __('Circle', 'countdown-timer-maker'),
+              },
+              text_timer: {
+                label: __('Text', 'countdown-timer-maker'),
+              },
+            }
+          }
+        />
       </FieldContainer>
     </GroupContainer>
     <LinkGroup />

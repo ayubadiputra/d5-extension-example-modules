@@ -28,9 +28,9 @@ export const SettingsDesign = ({
   <React.Fragment>
     <TextGroup />
     <FontGroup
-      groupLabel={__('Title Text', 'd5-extension-example-modules')}
+      groupLabel={__('Title Text 123', 'd5-extension-example-modules')}
       attrName="title.decoration.font"
-      fieldLabel={__('Title', 'd5-extension-example-modules')}
+      fieldLabel={__('Title 123', 'd5-extension-example-modules')}
       fields={{
         headingLevel: {
           render: true,

@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use ET\Builder\FrontEnd\Module\Style;
 use ET\Builder\Packages\Module\Options\Text\TextStyle;
+use ET\Builder\Packages\Module\Layout\Components\StyleCommon\CommonStyle;
 
 trait ModuleStylesTrait {
 
@@ -85,6 +86,21 @@ trait ModuleStylesTrait {
 					$elements->style(
 						[
 							'attrName' => 'postTitle',
+						]
+					),
+					CommonStyle::style(
+						[
+							'selector'            => "{$order_class} .test-image",
+							'attr'                => $attrs['image']['decoration']['position'],
+							'declarationFunction' => function( $args ) {
+								$attr_value = $args['attrValue'] ?? [];
+
+								var_dump( $args );
+								echo '<br>';
+								echo '<br>';
+
+								return "object-position: {$attr_value['x']} {$attr_value['y']};";
+							},
 						]
 					),
 				],

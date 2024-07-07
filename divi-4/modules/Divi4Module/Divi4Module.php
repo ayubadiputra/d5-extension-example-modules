@@ -89,6 +89,26 @@ class D4_Module extends ET_Builder_Module {
 					),
 				),
 			),
+			'max_width'       => array(
+				'extra' => array(
+					'my_element_width' => array(
+						'css'                  => array(
+							'main' => '%%order_class%%',
+						),
+						'options'              => array(
+							'width'     => array(
+								'label' => esc_html__( 'My Element Width', 'et_builder' ),
+							),
+							'max_width' => array(
+								'label' => esc_html__( 'My Element Max Width', 'et_builder' ),
+							),
+							'module_alignment' => array(
+								'label' => esc_html__( 'My Element Alignment', 'et_builder' ),
+							),
+						),
+					),
+				),
+			),
 		);
 
 		$this->custom_css_fields = array(

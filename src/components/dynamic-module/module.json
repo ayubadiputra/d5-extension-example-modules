@@ -26,7 +26,7 @@
     },
     "title": {
       "type": "object",
-      "selector": "{{selector}} .dynamic-module__title",
+      "selector": "{{selector}} .title",
       "default": {
         "decoration": {
           "font": {
@@ -40,11 +40,40 @@
           }
         }
       },
+      "defaultPrintedStyle": {
+        "decoration": {
+          "font": {
+            "font": {
+              "desktop": {
+                "value": {
+                  "size": "32px",
+                  "lineHeight": "1em",
+                  "weight": "500"
+                }
+              }
+            }
+          }
+        }
+      },
+      "styleProps": {
+        "font": {
+          "important": {
+            "font": {
+              "desktop": {
+                "value": {
+                  "color": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "tagName": "h2",
       "inlineEditor": "plainText",
       "elementType": "heading",
       "childrenSanitizer": "et_core_esc_previously",
       "attributes": {
-        "class": "dynamic-module__title"
+        "class": "title"
       }
     },
     "subtitle": {
@@ -102,6 +131,74 @@
               }
             }
           }
+        }
+      }
+    },
+    "display_type": {
+      "type": "object",
+      "selector": "{{selector}} .dynamic-moduledisplay_type",
+      "default": {
+        "innerContent": {
+          "desktop": {
+            "value": "countdown_timer"
+          }
+        }
+      },
+      "inlineEditor": "plainText",
+      "elementType": "SelectContainer",
+      "childrenSanitizer": "et_core_esc_previously",
+      "attributes": {
+        "class": "dynamic-moduledisplay_type"
+      }
+    },
+    "tblStripes": {
+      "type": "object",
+      "selector": "{{selector}} .dynamic-moduletblstripes",
+      "default": {
+        "advanced": {
+          "applyTo": {
+            "desktop": {
+              "value": [
+                "Column Footer",
+                "Column Header",
+                "Row Footer"
+              ]
+            }
+          }
+        }
+      },
+      "inlineEditor": "plainText",
+      "elementType": "CheckboxesContainer",
+      "childrenSanitizer": "et_core_esc_previously",
+      "attributes": {
+        "class": "dynamic-moduletblstripes"
+      }
+    },
+    "tblStripes2": {
+      "type": "object",
+      "selector": "{{selector}} .dynamic-moduletblstripes2",
+      "default": {
+        "advanced": {
+          "applyTo": {
+            "desktop": {
+              "value": "column_footer"
+            }
+          }
+        }
+      },
+      "inlineEditor": "plainText",
+      "elementType": "SelectContainer",
+      "childrenSanitizer": "et_core_esc_previously",
+      "attributes": {
+        "class": "dynamic-moduletblstripes2"
+      }
+    },
+    "image": {
+      "type": "object",
+      "selector": "{{selector}} .static-module__image img",
+      "styleProps": {
+        "border": {
+          "important": true
         }
       }
     }

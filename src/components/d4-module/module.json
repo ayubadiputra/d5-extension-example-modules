@@ -1,7 +1,7 @@
 {
   "name": "example/d4-module",
   "d4Shortcode": "d4_module",
-  "title": "Divi 4 Module",
+  "title": "Divi 4 Module Hahaha",
   "titles": "Divi 4 Modules",
   "moduleIcon": "example/module-d4",
   "category": "module",
@@ -50,6 +50,58 @@
       },
       "tagName": "div",
       "inlineEditor": "richText"
+    },
+    "myElement": {
+      "type": "object",
+      "selector": "{{selector}}",
+      "attributes": {
+        "class": ""
+      },
+      "tagName": "div",
+      "childrenSanitizer": "et_core_esc_previously",
+      "settings": {
+        "decoration": {
+          "bodyFont": {},
+          "sizing": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "designSizing",
+              "priority": 5,
+              "render": true,
+              "component": {
+                "type": "group",
+                "name": "divi/sizing",
+                "props": {
+                  "grouped": false,
+                  "fieldLabel": "My Element",
+                  "fields": {
+                    "alignment": {
+                      "render": false
+                    },
+                    "height": {
+                      "render": false
+                    },
+                    "maxHeight": {
+                      "render": false
+                    },
+                    "minHeight": {
+                      "render": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "styleProps": {
+        "bodyFont": {
+          "important": true
+        },
+        "sizing": {
+          "selector": "{{selector}}"
+        }
+      }
     }
   },
   "customCssFields": {

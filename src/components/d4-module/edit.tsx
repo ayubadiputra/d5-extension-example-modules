@@ -51,10 +51,10 @@ const D4ModuleEdit = (props: D4ModuleEditProps): ReactElement => {
       />
       <div className="d4_module_inner">
         {elements.render({
-          attrName: 'title',
+          attrName: 'title1',
         })}
         {elements.render({
-          attrName: 'content',
+          attrName: 'content1',
         })}
       </div>
     </ModuleContainer>

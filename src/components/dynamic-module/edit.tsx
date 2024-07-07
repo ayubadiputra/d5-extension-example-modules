@@ -31,6 +31,7 @@ const DynamicModuleEdit = (props: DynamicModuleEditProps): ReactElement => {
     id,
     name,
     elements,
+    defaultPrintedStyleAttrs,
   } = props;
 
   const {
@@ -41,6 +42,12 @@ const DynamicModuleEdit = (props: DynamicModuleEditProps): ReactElement => {
 
   const PostTitleHeading = attrs?.postTitle?.decoration?.font?.font?.desktop?.value?.headingLevel;
   const postsNumber = parseInt(attrs?.postItems?.innerContent?.desktop?.value?.postsNumber);
+
+  const viewType = attrs?.tblStripes?.advanced?.applyTo?.desktop?.value;
+
+
+
+  const viewType2 = attrs?.tblStripes2?.advanced?.applyTo?.desktop?.value ?? defaultPrintedStyleAttrs?.tblStripes2?.advanced?.applyTo?.desktop?.value;
 
   /**
    * Fetches new Portfolio Posts on parameter changes.
@@ -80,6 +87,24 @@ const DynamicModuleEdit = (props: DynamicModuleEditProps): ReactElement => {
               {elements.render({
                 attrName: 'subtitle',
               })}
+              <h4>View Type Checked:</h4>
+              {
+                console.log('Test - View Type Checked: ', viewType.sort().join(', '))
+              }
+              {
+                map(viewType.sort(), (viewType) => (
+                    <div>
+                      {viewType}
+                    </div>
+                  )
+                )
+              }
+              <br/>
+              <h4>View Type 2 Selected:</h4>
+              {viewType2.replace(/_/g, ' ')}
+              <br/>
+              <br/>
+              <br/>
               <div className="dynamic-module__post-items">
                 {
                   map(response, (post) => (

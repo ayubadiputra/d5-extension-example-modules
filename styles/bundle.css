@@ -37,6 +37,9 @@
   position: relative;
 }
 .dynamic-module__title {
+  margin-bottom: 10px;
+}
+.dynamic-module__subtitle {
   margin-bottom: 30px;
 }
 .dynamic-module__post-item {
