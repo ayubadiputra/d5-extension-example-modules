@@ -1,8 +1,8 @@
 // External Dependencies.
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 
 // Divi Dependencies.
-import { 
+import {
   ModuleContainer,
   ElementComponents,
 } from '@divi/module';
@@ -42,30 +42,47 @@ const DynamicModuleEdit = (props: DynamicModuleEditProps): ReactElement => {
   const PostTitleHeading = attrs?.postTitle?.decoration?.font?.font?.desktop?.value?.headingLevel;
   const postsNumber = parseInt(attrs?.postItems?.innerContent?.desktop?.value?.postsNumber);
 
+  const fetchAbortRef = useRef<AbortController>();
+
   /**
    * Fetches new Portfolio Posts on parameter changes.
    */
   useEffect(() => {
+    if(fetchAbortRef.current) {
+      fetchAbortRef.current.abort();
+    }
+
+    fetchAbortRef.current = new AbortController();
+
     fetch({
       restRoute: `/wp/v2/posts?context=view&per_page=${postsNumber}`,
       method:    'GET',
+      signal:    fetchAbortRef.current.signal,
     }).
     catch((error) => {
       console.error(error);
     });
+
+    return () => {
+      if(fetchAbortRef.current) {
+        fetchAbortRef.current.abort();
+      }
+    };
   }, [postsNumber]);
 
   return (
     <ModuleContainer
       attrs={attrs}
       elements={elements}
-      componentType="edit"
       id={id}
       name={name}
       stylesComponent={ModuleStyles}
       classnamesFunction={moduleClassnames}
       scriptDataComponent={ModuleScriptData}
     >
+      {elements.styleComponents({
+        attrName: 'module',
+      })}
       {
         ! isLoading && (
           <>
@@ -73,18 +90,18 @@ const DynamicModuleEdit = (props: DynamicModuleEditProps): ReactElement => {
               attrs={attrs?.module?.decoration ?? {}}
               id={id}
             />
-            <div className="dynamic-module__inner">
+            <div className="example_dynamic_module__inner">
               {elements.render({
                 attrName: 'title',
               })}
-              <div className="dynamic-module__post-items">
+              <div className="example_dynamic_module__post-items">
                 {
                   map(response, (post) => (
-                      <div className="dynamic-module__post-item" key={post?.id}>
-                        <PostTitleHeading className="dynamic-module__post-item-title">
+                      <div className="example_dynamic_module__post-item" key={post?.id}>
+                        <PostTitleHeading className="example_dynamic_module__post-item-title">
                           <a href={post?.link} onClick={() => false}>{post?.title?.rendered}</a>
                         </PostTitleHeading>
-                        <div className="dynamic-module__post-item-content" dangerouslySetInnerHTML={{__html: post?.excerpt?.rendered}} />
+                        <div className="example_dynamic_module__post-item-content" dangerouslySetInnerHTML={{__html: post?.excerpt?.rendered}} />
                       </div>
                     )
                   )

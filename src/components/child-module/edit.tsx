@@ -51,23 +51,25 @@ export const ChildModuleEdit = (props: ChildModuleEditProps): ReactElement => {
       attrs={attrs}
       parentAttrs={parentAttrs}
       elements={elements}
-      componentType="edit"
       id={id}
       name={name}
       stylesComponent={ModuleStyles}
       classnamesFunction={moduleClassnames}
       tag="li"
     >
+      {elements.styleComponents({
+        attrName: 'module',
+      })}
       {icon && (
-        <div className="child-module__icon et-pb-icon">
+        <div className="example_child_module__icon et-pb-icon">
           {processFontIcon(icon)}
         </div>
       )}
-      <div className="child-module__content-container">
+      <div className="example_child_module__content-container">
         {elements.render({
           attrName: 'title',
         })}
-        <div className="child-module__content">
+        <div className="example_child_module__content">
           {elements.render({
             attrName: 'content',
           })}

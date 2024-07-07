@@ -57,8 +57,8 @@ trait ModuleStylesTrait {
 		$parent_default_attributes = ModuleRegistration::get_default_attrs( 'example/parent-module' );
 		$parent_attrs_with_default = array_replace_recursive( $parent_default_attributes, $parent_attrs );
 
-		$icon_selector              = "{$order_class} .child-module__icon.et-pb-icon";
-		$content_container_selector = "{$order_class} .child-module__content-container";
+		$icon_selector              = "{$order_class} .example_child_module__icon.et-pb-icon";
+		$content_container_selector = "{$order_class} .example_child_module__content-container";
 
 		Style::add(
 			[
@@ -110,21 +110,21 @@ trait ModuleStylesTrait {
 					CommonStyle::style(
 						[
 							'selector'            => $icon_selector,
-							'attr'                => $attrs['icon']['innerContent'] ?? $parent_attrs_with_default['icon']['innerContent'],
+							'attr'                => $attrs['icon']['innerContent'] ?? $parent_attrs_with_default['icon']['innerContent'] ?? [],
 							'declarationFunction' => [ ChildModule::class, 'icon_font_declaration' ],
 						]
 					),
 					CommonStyle::style(
 						[
 							'selector' => $icon_selector,
-							'attr'     => $attrs['icon']['advanced']['color'] ?? $parent_attrs_with_default['icon']['advanced']['color'],
+							'attr'     => $attrs['icon']['advanced']['color'] ?? $parent_attrs_with_default['icon']['advanced']['color'] ?? [],
 							'property' => 'color',
 						]
 					),
 					CommonStyle::style(
 						[
 							'selector' => $icon_selector,
-							'attr'     => $attrs['icon']['advanced']['size'] ?? $parent_attrs_with_default['icon']['advanced']['size'],
+							'attr'     => $attrs['icon']['advanced']['size'] ?? $parent_attrs_with_default['icon']['advanced']['size'] ?? [],
 							'property' => 'font-size',
 						]
 					),

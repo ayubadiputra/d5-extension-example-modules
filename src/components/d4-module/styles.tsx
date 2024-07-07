@@ -10,7 +10,9 @@ import {
   TextStyle,
 } from '@divi/module';
 
-import { BackgroundAttr } from '@divi/types';
+import { 
+  type Element,
+} from '@divi/types';
 
 // Local dependencies.
 import { D4ModuleAttrs } from './types';
@@ -41,16 +43,16 @@ import { cssFields } from './custom-css';
         },
       })}
       <TextStyle
-        selector={`${orderClass} .d4_module_inner`}
+        selector={`${orderClass} .example_d4_module_inner`}
         attr={attrs?.module?.advanced?.text}
       />
       {
-        // Set the `.d4_module_inner` element `position` to `relative` if the background image has parallax enabled.
+        // Set the `.example_d4_module_inner` element `position` to `relative` if the background image has parallax enabled.
       }
       <CommonStyle
-        selector={`${orderClass} .d4_module_inner`}
+        selector={`${orderClass} .example_d4_module_inner`}
         attr={attrs?.module?.decoration?.background}
-        declarationFunction={({attrValue}:{attrValue:BackgroundAttr}) => {
+        declarationFunction={({attrValue}:{attrValue:Element.Decoration.Background.AttributeValue}) => {
           if ('on' === attrValue?.image?.parallax?.enabled) {
             return 'position: relative;';
           }
