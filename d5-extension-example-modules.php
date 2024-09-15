@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: D5 Extension Example: Modules
+Plugin Name: D5 Extension Example: Modules (Modified by Ayub Adiputra)
 Plugin URI:
-Description: Example modules.
+Description: Example modules. This plugin is modified by Ayub Adiputra for testing and examples purpose.
 Version:     1.0.0
 Author:      Elegant Themes
 Author URI:  https://elegantthemes.com

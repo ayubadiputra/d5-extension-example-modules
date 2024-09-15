@@ -9,7 +9,7 @@ export const placeholderContent: DynamicModuleAttrs = {
   title: {
     innerContent: {
       desktop: {
-        value: placeholder.title,
+        value: "Dynamic Module Title Here",
       }
     }
   },
