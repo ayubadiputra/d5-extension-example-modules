@@ -50,6 +50,25 @@ function d5_extension_example_module_initialize_d4_modules() {
 add_action( 'et_builder_ready', 'd5_extension_example_module_initialize_d4_modules' );
 
 /**
+ * Enqueue Divi 4 Visual Builder Assets
+ *
+ * @since ??
+ */
+function d5_extension_example_module_enqueue_d4_vb_scripts() {
+	if ( et_core_is_fb_enabled() ) {
+		$plugin_dir_url = plugin_dir_url( __FILE__ );
+		wp_enqueue_script(
+			'd5-extension-example-modules-divi4-vb',
+			"{$plugin_dir_url}divi-4/build/d5-extension-example-modules-divi4.js",
+			array( 'react', 'jquery' ),
+			'1.0.0',
+			true
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'd5_extension_example_module_enqueue_d4_vb_scripts' );
+
+/**
  * Enqueue style and scripts of Module Extension Example for Visual Builder.
  *
  * @since ??
@@ -58,20 +77,37 @@ function d5_extension_example_module_enqueue_vb_scripts() {
 	if ( et_builder_d5_enabled() && et_core_is_fb_enabled() ) {
 		$plugin_dir_url = plugin_dir_url( __FILE__ );
 
-		wp_enqueue_script(
-			'd5-extension-example-modules-builder-bundle-script',
-			"{$plugin_dir_url}scripts/bundle.js",
-			array(
-				'divi-module-library',
-				'divi-vendor-wp-hooks',
-			),
-			'1.0.0',
-			true
+		\ET\Builder\VisualBuilder\Assets\PackageBuildManager::register_package_build(
+			[
+				'name'   => 'd5-extension-example-modules-builder-bundle-script',
+				'version' => '1.0.0',
+				'script' => [
+					'src' => "{$plugin_dir_url}scripts/bundle.js",
+					'deps'               => [
+						'divi-module-library',
+						'divi-vendor-wp-hooks',
+					],
+					'enqueue_top_window' => false,
+					'enqueue_app_window' => true,
+				],
+			]
 		);
-		wp_enqueue_style( 'd5-extension-example-modules-builder-vb-bundle-style', "{$plugin_dir_url}styles/vb-bundle.css", array(), '1.0.0' );
+
+		\ET\Builder\VisualBuilder\Assets\PackageBuildManager::register_package_build(
+			[
+				'name'   => 'd5-extension-example-modules-builder-vb-bundle-style',
+				'version' => '1.0.0',
+				'style' => [
+					'src' => "{$plugin_dir_url}styles/vb-bundle.css",
+					'deps'               => [],
+					'enqueue_top_window' => false,
+					'enqueue_app_window' => true,
+				],
+			]
+		);
 	}
 }
-add_action( 'divi_visual_builder_assets_before_enqueue_packages', 'd5_extension_example_module_enqueue_vb_scripts' );
+add_action( 'divi_visual_builder_assets_before_enqueue_scripts', 'd5_extension_example_module_enqueue_vb_scripts' );
 
 /**
  * Enqueue style and scripts of Module Extension Example

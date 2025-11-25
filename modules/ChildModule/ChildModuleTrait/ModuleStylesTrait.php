@@ -57,7 +57,6 @@ trait ModuleStylesTrait {
 		$parent_default_attributes = ModuleRegistration::get_default_attrs( 'example/parent-module' );
 		$parent_attrs_with_default = array_replace_recursive( $parent_default_attributes, $parent_attrs );
 
-		$icon_selector              = "{$order_class} .example_child_module__icon.et-pb-icon";
 		$content_container_selector = "{$order_class} .example_child_module__content-container";
 
 		Style::add(
@@ -72,23 +71,19 @@ trait ModuleStylesTrait {
 						[
 							'attrName'   => 'module',
 							'styleProps' => [
-								'disabledOn' => [
+								'disabledOn'     => [
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
 								],
+								'advancedStyles' => [
+									[
+										'componentName' => 'divi/text',
+										'props'         => [
+											'selector' => $content_container_selector,
+											'attr'     => $attrs['module']['advanced']['text'] ?? [],
+										]
+									]
+								]
 							],
-						]
-					),
-					TextStyle::style(
-						[
-							'selector' => $content_container_selector,
-							'attr'     => $attrs['module']['advanced']['text'] ?? [],
-						]
-					),
-					CssStyle::style(
-						[
-							'selector'  => $args['orderClass'],
-							'attr'      => $attrs['css'] ?? [],
-							'cssFields' => self::custom_css(),
 						]
 					),
 
@@ -107,25 +102,72 @@ trait ModuleStylesTrait {
 					),
 
 					// Icon.
-					CommonStyle::style(
+					$elements->style(
 						[
-							'selector'            => $icon_selector,
-							'attr'                => $attrs['icon']['innerContent'] ?? $parent_attrs_with_default['icon']['innerContent'] ?? [],
-							'declarationFunction' => [ ChildModule::class, 'icon_font_declaration' ],
+							'attrName'   => 'icon',
+							'styleProps' => [
+								'advancedStyles' => [
+									[
+										'componentName' => 'divi/common',
+										'props'         => [
+											'attr'                => $attrs['icon']['innerContent'] ?? $parent_attrs_with_default['icon']['innerContent'] ?? [],
+											'declarationFunction' => [ChildModule::class, 'icon_font_declaration'],
+										]
+									],
+									[
+										'componentName' => 'divi/common',
+										'props'         => [
+											'attr'     => $attrs['icon']['advanced']['color'] ?? $parent_attrs_with_default['icon']['advanced']['color'] ?? [],
+											'property' => 'color',
+										]
+									],
+									[
+										'componentName' => 'divi/common',
+										'props'         => [
+											'attr'     => $attrs['icon']['advanced']['size'] ?? $parent_attrs_with_default['icon']['advanced']['size'] ?? [],
+											'property' => 'font-size',
+										]
+									],
+								]
+							]
 						]
 					),
-					CommonStyle::style(
+
+					/*
+					 * We need to add CssStyle at the very bottom of other
+					 * components so that custom css can override module styles
+					 * till we find a more elegant solution.
+					 */
+					CssStyle::style(
 						[
-							'selector' => $icon_selector,
-							'attr'     => $attrs['icon']['advanced']['color'] ?? $parent_attrs_with_default['icon']['advanced']['color'] ?? [],
-							'property' => 'color',
+							'selector'  => $args['orderClass'],
+							'attr'      => $attrs['css'] ?? [],
+							'cssFields' => self::custom_css(),
 						]
 					),
-					CommonStyle::style(
+
+					// ATTENTION: The code is intentionally added and commented in FE only as an example of expected value format.
+					// If you have custom style processing, the style output should be passed as an `array` of style declarations
+					// to the `styles` property of the `Style::add` method. For example:
+					// [
+					// 	[
+					// 		'atRules'     => false,
+					// 		'selector'    => $icon_selector,
+					// 		'declaration' => 'color: red;'
+					// 	],
+					// 	[
+					// 		'atRules'     => '@media only screen and (max-width: 767px)',
+					// 		'selector'    => $icon_selector,
+					// 		'declaration' => 'color: green;'
+					// 	],
+					// ],
+
+					// The code below is an example of how to use the `CssStyle::style` method to generate CSS style.
+					CssStyle::style(
 						[
-							'selector' => $icon_selector,
-							'attr'     => $attrs['icon']['advanced']['size'] ?? $parent_attrs_with_default['icon']['advanced']['size'] ?? [],
-							'property' => 'font-size',
+							'selector'  => $args['orderClass'],
+							'attr'      => $attrs['css'] ?? [],
+							'cssFields' => self::custom_css(),
 						]
 					),
 				],

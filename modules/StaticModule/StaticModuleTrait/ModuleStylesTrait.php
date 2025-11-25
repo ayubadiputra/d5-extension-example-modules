@@ -62,23 +62,19 @@ trait ModuleStylesTrait {
 						[
 							'attrName'   => 'module',
 							'styleProps' => [
-								'disabledOn' => [
+								'disabledOn'     => [
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
 								],
+								'advancedStyles' => [
+									[
+										'componentName' => 'divi/text',
+										'props'         => [
+											'selector' => "{$args['orderClass']} .example_static_module__content-container",
+											'attr'     => $attrs['module']['advanced']['text'] ?? [],
+										]
+									]
+								]
 							],
-						]
-					),
-					TextStyle::style(
-						[
-							'selector' => "{$args['orderClass']} .example_static_module__content-container",
-							'attr'     => $attrs['module']['advanced']['text'] ?? [],
-						]
-					),
-					CssStyle::style(
-						[
-							'selector'  => $args['orderClass'],
-							'attr'      => $attrs['css'] ?? [],
-							'cssFields' => StaticModule::custom_css(),
 						]
 					),
 
@@ -100,6 +96,44 @@ trait ModuleStylesTrait {
 					$elements->style(
 						[
 							'attrName' => 'content',
+						]
+					),
+
+					/*
+					 * We need to add CssStyle at the very bottom of other
+					 * components so that custom css can override module styles
+					 * till we find a more elegant solution.
+					 */
+					CssStyle::style(
+						[
+							'selector'  => $args['orderClass'],
+							'attr'      => $attrs['css'] ?? [],
+							'cssFields' => StaticModule::custom_css(),
+						]
+					),
+
+					// ATTENTION: The code is intentionally added and commented in FE only as an example of expected value format.
+					// If you have custom style processing, the style output should be passed as an `array` of style declarations
+					// to the `styles` property of the `Style::add` method. For example:
+					// [
+					// 	[
+					// 		'atRules'     => false,
+					// 		'selector'    => "{$args['orderClass']} .example_static_module__content-container",
+					// 		'declaration' => 'color: red;'
+					// 	],
+					// 	[
+					// 		'atRules'     => '@media only screen and (max-width: 767px)',
+					// 		'selector'    => "{$args['orderClass']} .example_static_module__content-container",
+					// 		'declaration' => 'color: green;'
+					// 	],
+					// ],
+
+					// The code below is an example of how to use the `CssStyle::style` method to generate CSS style.
+					CssStyle::style(
+						[
+							'selector'  => $args['orderClass'],
+							'attr'      => $attrs['css'] ?? [],
+							'cssFields' => StaticModule::custom_css(),
 						]
 					),
 				],
